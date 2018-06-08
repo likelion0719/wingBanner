@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.wingBanner.service.impl.WingBannerMapper">
+
+	<select id="selectWingBannerList" resultType="egovMap">
+	SELECT CONCAT(TRUNCATE(@ROWNUM := @ROWNUM + 1, 0)) AS ROWNUM, 
+		   A.BRAND_CD,
+		   A.BRAND_NM
+ 	 FROM (
+			SELECT BRAND_CD, BRAND_NM
+			FROM T_BRAND
+			ORDER BY BRAND_CD
+		  ) A, (SELECT @ROWNUM := 0) R 
+ 	ORDER BY ROWNUM
+	</select>
+	
+</mapper>

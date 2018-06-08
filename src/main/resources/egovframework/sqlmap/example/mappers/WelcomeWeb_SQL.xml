@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.welcomeWeb.service.impl.WelcomeWebMapper">
+	
+	<select id="selectParentBoxList" resultType="egovMap">
+		SELECT *
+		FROM (SELECT ID,
+		    		USER_NAME,
+		    		AGE,
+		    		COUNTRY,
+		    		ETC,
+		        rownum as rn
+				FROM welcome_web) WW
+		JOIN (select brand_nm,
+				brand_cd,
+		        rownum as rn
+		        from t_brand) TB
+		ON WW.RN = TB.RN
+	</select>
+</mapper>
